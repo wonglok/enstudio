@@ -7,7 +7,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/project">
+        <Route path="/project/:projectRoot">
           <Editor />
         </Route>
         <Route path="/">
