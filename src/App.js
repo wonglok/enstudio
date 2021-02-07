@@ -1,6 +1,5 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import { Editor } from "./pages/Editor";
 import { Home } from "./pages/Home";
 
