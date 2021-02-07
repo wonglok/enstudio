@@ -1,9 +1,13 @@
 import { runSocket } from "../server/socket.js";
-import { useEffect, useMemo } from "react";
+import { useEffect, createContext } from "react";
 import slugify from "slugify";
 import { useRouteMatch } from "react-router-dom";
 import { getLowDB } from "../server/boxdb";
+import { Layout } from "../ui/Layout.js";
+import { useBoxes } from "../server/codebox";
+import { SVGArea } from "../ui/SVGArea.js";
 // import { useProjectStore } from "../server/recent.js";
+export const ProjectContext = createContext({});
 
 export function slugger(str) {
   return slugify(str, {
@@ -19,15 +23,9 @@ export function Editor() {
   } = useRouteMatch();
   projectRoot = decodeURIComponent(projectRoot);
 
-  let { slug, boxdb } = useMemo(() => {
-    if (!projectRoot) {
-      return {};
-    }
-    const slug = slugger(projectRoot);
-    const boxdb = getLowDB({ projectRoot: projectRoot });
-
-    return { slug, boxdb };
-  }, [projectRoot]);
+  const slug = slugger(projectRoot);
+  const boxdb = getLowDB({ projectRoot: projectRoot });
+  const boxesUtil = useBoxes({ db: boxdb, root: projectRoot });
 
   useEffect(() => {
     if (!projectRoot) {
@@ -43,5 +41,22 @@ export function Editor() {
     });
   }, [projectRoot]);
 
-  return <div>123</div>;
+  return (
+    <Layout title={"Creative Coding Project"}>
+      <div style={{ height: "calc(100% - 60px)" }} className="">
+        <ProjectContext.Provider
+          value={{
+            projectRoot,
+            slug,
+            lowdb: boxdb,
+            boxesUtil,
+          }}
+        >
+          <div className={"h-full w-full relative"}>
+            <SVGArea></SVGArea>
+          </div>
+        </ProjectContext.Provider>
+      </div>
+    </Layout>
+  );
 }

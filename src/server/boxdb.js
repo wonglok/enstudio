@@ -24,10 +24,7 @@ export const getLowDB = ({ projectRoot }) => {
     };
     const db = low(adapter);
 
-    const text = fs.readFileSync(
-      projectRoot + "/src/effectnode/js/meta.json",
-      "utf-8"
-    );
+    const text = fs.readFileSync(projectRoot + "/src/effectnode/js/meta.json");
 
     let json = {};
 
