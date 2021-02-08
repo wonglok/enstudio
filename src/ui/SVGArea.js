@@ -92,9 +92,28 @@ export function Box({
   });
 
   let openFileEditor = ({ box }) => {
-    // let { ipcRenderer } = window.require("electron");
-    // let filePath = boxesUtil.resolvePath({ box });
-    // ipcRenderer.send("open", filePath, root);
+    var openInEditor = window.require("open-in-editor");
+    var editor = openInEditor.configure(
+      {
+        // options
+        editor: "code",
+        pattern: "-r -g {filename}:{line}:{column}",
+      },
+      function (err) {
+        console.error("Something went wrong: " + err);
+      }
+    );
+
+    let filePath = boxesUtil.resolvePath({ box });
+
+    editor.open(filePath).then(
+      function () {
+        console.log("Success!");
+      },
+      function (err) {
+        console.error("Something went wrong: " + err);
+      }
+    );
   };
 
   const onClickEditCode = async () => {
@@ -262,7 +281,7 @@ export function Box({
             y={fontSize + 1 + 3}
             fontSize={fontSize + "px"}
           >
-            Edit Code
+            Edit JS Code
           </text>
 
           <text
@@ -1157,7 +1176,7 @@ export function SVGArea() {
   return (
     <div ref={ref} className={"w-full h-full relative"}>
       {rect && <SVGEditor rect={rect} state={lowdb.getState()}></SVGEditor>}
-      <LogBox></LogBox>
+      {/* <LogBox></LogBox> */}
       {/* {JSON.stringify(lowdb.getState())} */}
     </div>
   );

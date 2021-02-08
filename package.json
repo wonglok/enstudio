@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "autoprefixer": "^9",
+    "cors": "^2.8.5",
     "currify": "^4.0.0",
     "express": "^4.17.1",
     "fs-extra": "^9.1.0",

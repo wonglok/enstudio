@@ -30,8 +30,11 @@ export async function runSocket({
     );
     let port = config.studio.port;
     var express = window.require("express");
+    var cors = window.require("cors");
     var app = express();
     httpServer = window.require("http").Server(app);
+
+    app.use(cors());
 
     app.get("/", (req, res) => {
       res.json({ msg: "ok" });
