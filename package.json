@@ -15,6 +15,7 @@
     "fullstore": "^3.0.0",
     "lowdb": "^1.0.0",
     "nw-react-scripts": "4.0.1",
+    "open-in-editor": "^2.2.0",
     "postcss": "^7",
     "postcss-nested": "^5.0.3",
     "react": "^17.0.1",

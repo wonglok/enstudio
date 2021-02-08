@@ -151,7 +151,7 @@ function UserData({ box, win }) {
     boxesUtil.updateBox({ box });
     // window.dispatchEvent(new CustomEvent("save-state-now"));
     window.dispatchEvent(new CustomEvent("try-save-state"));
-    // window.dispatchEvent(new CustomEvent("stream-state-to-webview"));
+    window.dispatchEvent(new CustomEvent("stream-state-to-webview"));
   };
 
   let onAdd = async () => {

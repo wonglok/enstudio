@@ -62,7 +62,7 @@ export function Box({
   onClickInput = () => {},
 }) {
   const [rID, refresh] = useState(0);
-  const { boxesUtil, root } = useContext(ProjectContext);
+  const { boxesUtil } = useContext(ProjectContext);
 
   let updateBox = ({ box }) => {
     boxesUtil.updateBox({ box });
@@ -92,9 +92,9 @@ export function Box({
   });
 
   let openFileEditor = ({ box }) => {
-    let { ipcRenderer } = window.require("electron");
-    let filePath = boxesUtil.resolvePath({ box });
-    ipcRenderer.send("open", filePath, root);
+    // let { ipcRenderer } = window.require("electron");
+    // let filePath = boxesUtil.resolvePath({ box });
+    // ipcRenderer.send("open", filePath, root);
   };
 
   const onClickEditCode = async () => {
@@ -632,7 +632,7 @@ export function SVGEditor({ rect, state }) {
   const [rID, refresh] = useState(0);
   const [hand, setHandMode] = useState(false);
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const { boxesUtil, lowdb } = useContext(ProjectContext);
+  const { boxesUtil, lowdb, projectRoot } = useContext(ProjectContext);
 
   useEffect(() => {
     let refresher = () => {
@@ -876,15 +876,36 @@ export function SVGEditor({ rect, state }) {
     setHandMode(false);
   };
 
-  let openCore = () => {
-    // let { ipcRenderer } = window.require("electron");
-    // let box = {
-    //   isEntry: true,
-    //   fileName: "entry.js",
-    // };
-    // let filePath = boxesUtil.resolvePath({ box });
-    // ipcRenderer.send("open", filePath, root);
-  };
+  // let openCore = () => {
+  //   // var path = window.require("path");
+  //   var openInEditor = window.require("open-in-editor");
+  //   var editor = openInEditor.configure(
+  //     {
+  //       // options
+  //       editor: "code",
+  //       pattern: "-r -g {filename}:{line}:{column}",
+  //     },
+  //     function (err) {
+  //       console.error("Something went wrong: " + err);
+  //     }
+  //   );
+
+  //   let box = {
+  //     isEntry: true,
+  //     fileName: "core.js",
+  //   };
+
+  //   let filePath = boxesUtil.resolvePath({ box });
+
+  //   editor.open(filePath).then(
+  //     function () {
+  //       console.log("Success!");
+  //     },
+  //     function (err) {
+  //       console.error("Something went wrong: " + err);
+  //     }
+  //   );
+  // };
 
   useEffect(() => {
     let esc = (ev) => {
@@ -901,17 +922,53 @@ export function SVGEditor({ rect, state }) {
   let openFolder = () => {
     // let { ipcRenderer } = window.require("electron");
     // ipcRenderer.send("open", root);
+    openInFinder({ url: projectRoot });
+  };
+
+  let openInFinder = ({ url }) => {
+    var gui = window.require("nw.gui");
+    gui.Shell.openItem(url);
   };
 
   let reloadSystem = () => {
     window.location.reload();
   };
 
-  let openWebPage = () => {
-    // let { shell } = window.require("electron");
-    // shell.openExternal("http://localhost:1234");
+  let getURL = () => {
+    let path = window.require("path");
+    let fs = window.require("fs-extra");
+    let config = fs.readJsonSync(
+      path.join(projectRoot, "./src/effectnode/config.json")
+    );
+    let url = config.client.origin;
+    return url;
   };
 
+  let openWebPage = () => {
+    let url = getURL();
+    let gui = window.require("nw.gui");
+    gui.Shell.openExternal(url);
+  };
+
+  let [online, setOnline] = useState(false);
+  useEffect(() => {
+    let tt = setInterval(() => {
+      let url = getURL();
+      if (url) {
+        fetch(url).then(
+          () => {
+            setOnline(true);
+          },
+          () => {
+            setOnline(false);
+          }
+        );
+      }
+    }, 10000);
+    return () => {
+      clearInterval(tt);
+    };
+  });
   return (
     <svg
       ref={svg}
@@ -992,39 +1049,6 @@ export function SVGEditor({ rect, state }) {
         <text
           x={"Reset View".length * 7 + 30 + pan.x}
           y={10 + 17 + pan.y}
-          onClick={addModule}
-          fontSize="17"
-          fill="white"
-          className="underline cursor-pointer"
-        >
-          Add Module
-        </text>
-
-        <text
-          x={"Reset View".length * 7 + 130 + pan.x}
-          y={10 + 17 + pan.y}
-          onClick={openCore}
-          fontSize="17"
-          fill="white"
-          className="underline cursor-pointer"
-        >
-          Edit CORE
-        </text>
-
-        <text
-          x={280 + pan.x}
-          y={10 + 17 + pan.y}
-          onClick={openFolder}
-          fontSize="17"
-          fill="white"
-          className="underline cursor-pointer"
-        >
-          Project Folder
-        </text>
-
-        <text
-          x={380 + pan.x}
-          y={10 + 17 + pan.y}
           onClick={reloadSystem}
           fontSize="17"
           fill="white"
@@ -1034,15 +1058,50 @@ export function SVGEditor({ rect, state }) {
         </text>
 
         <text
-          x={380 + 100 + pan.x}
+          x={"Reset View".length * 7 + 130 + pan.x}
           y={10 + 17 + pan.y}
-          onClick={openWebPage}
+          onClick={addModule}
           fontSize="17"
           fill="white"
           className="underline cursor-pointer"
         >
-          Open WebPage
+          Add Module
         </text>
+
+        <text
+          x={280 + 20 + pan.x}
+          y={10 + 17 + pan.y}
+          onClick={openFolder}
+          fontSize="17"
+          fill="white"
+          className="underline cursor-pointer"
+        >
+          Locate Project
+        </text>
+
+        {/* <text
+          x={380 + 20 + pan.x}
+          y={10 + 17 + pan.y}
+          onClick={openCore}
+          fontSize="17"
+          fill="white"
+          className="underline cursor-pointer"
+        >
+          Open Core
+        </text> */}
+
+        {online && (
+          <text
+            x={400 + pan.x}
+            y={10 + 17 + pan.y}
+            onClick={openWebPage}
+            fontSize="17"
+            fill="white"
+            className="underline cursor-pointer"
+          >
+            Open WebPage
+          </text>
+        )}
       </g>
 
       {/* <SlotLine></SlotLine> */}

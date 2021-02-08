@@ -22,7 +22,6 @@ export async function runSocket({
   // };
 
   let httpServer = false;
-
   try {
     let fs = window.require("fs-extra");
     let path = window.require("path");
@@ -34,12 +33,24 @@ export async function runSocket({
     var app = express();
     httpServer = window.require("http").Server(app);
 
+    app.get("/", (req, res) => {
+      res.json({ msg: "ok" });
+    });
+
     var io = window.require("socket.io")(httpServer, {
       cors: {
-        origin: config.client.origin,
+        origin: "*",
         methods: ["GET", "POST"],
       },
     });
+
+    let onStreamState = () => {
+      io.to(slug).emit("stream-state", { state: boxdb.getState() });
+      console.log("streaming-state");
+    };
+    let onReloadPage = () => {
+      io.to(slug).emit("reload-page", {});
+    };
 
     io.on("connection", (socket) => {
       console.log("a user connected", socket.id);
@@ -47,14 +58,8 @@ export async function runSocket({
 
       io.to(slug).emit("stream-state", { state: boxdb.getState() });
       socket.on("request-input-stream", onStreamState);
+      console.log(slug);
     });
-
-    let onStreamState = () => {
-      io.to(slug).emit("stream-state", { state: boxdb.getState() });
-    };
-    let onReloadPage = () => {
-      io.to(slug).emit("reload-page", {});
-    };
 
     window.addEventListener("reload-page", onReloadPage);
     window.addEventListener("stream-state-to-webview", onStreamState);

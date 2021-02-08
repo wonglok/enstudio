@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDrag } from "react-use-gesture";
-import { ProjectContext } from "../pages/Editor";
-
+// import { ProjectContext } from "../pages/Editor";
+import { IOEdit } from "./IOEdit.js";
 const getZMax = ({ wins }) => {
   let zidx = wins.map((e, i) => e.zIndex || i);
   if (zidx.length === 0) {
@@ -21,10 +21,8 @@ export function WindowTemplate({
   initVal,
   showToolBtn = true,
   onChange = () => {},
+  onSetTop = () => {},
 }) {
-  const { useWinBox } = useContext(ProjectContext);
-  const winboxes = useWinBox((s) => s.winboxes);
-
   const [rect, set] = useState(initVal || { x: 0, y: 0, w: 100, h: 100 });
   const toolbar = useDrag(({ down, delta: [dx, dy] }) => {
     if (down) {
@@ -98,13 +96,8 @@ export function WindowTemplate({
   };
 
   const onZIndex = () => {
-    let max = getZMax({ wins: winboxes }) + 2;
-
-    //
-    set((s) => {
-      onChange({ ...s, zIndex: max });
-      return { ...s, zIndex: max };
-    });
+    onSetTop(rect);
+    onChange(rect);
     // window.dispatchEvent(new CustomEvent("relayout-zindex"));
   };
 
@@ -177,6 +170,148 @@ export function WindowTemplate({
   );
 }
 
-export function WindowSet() {
-  return <div></div>;
+let getID = () => `_${(Math.random() * 100000000).toFixed(0)}`;
+
+export function WindowSet({ children }) {
+  let [wins, setWins] = useState([]);
+  let onSetTop = (win) => {
+    win.hidden = false;
+    win.zIndex = getZMax({ wins: wins }) + 10;
+  };
+
+  let reload = (win) => {
+    setWins((s) => {
+      let cloned = JSON.parse(JSON.stringify(s));
+      let idx = cloned.findIndex((e) => e._id === win._id);
+      if (idx !== -1) {
+        cloned[idx] = { ...win };
+      }
+      return cloned;
+    });
+  };
+
+  let makeWin = () => ({
+    _id: getID(),
+    name: "Edit I/O",
+    x: 50,
+    y: 50,
+    w: 515,
+    h: 515,
+    zIndex: 0,
+    hidden: false,
+  });
+
+  useEffect(() => {
+    let addWin = ({ detail: { box } }) => {
+      let found = wins.find((e) => {
+        return e._id === box._id;
+      });
+
+      if (!found) {
+        let win = makeWin();
+        win.name = box.displayName;
+        win._id = box._id;
+        win.type = "ModuleWindow";
+        win.hidden = false;
+        onSetTop(win);
+        setWins((s) => [...s, win]);
+      } else {
+        let win = found;
+        win.hidden = false;
+        onSetTop(win);
+        reload(win);
+      }
+    };
+
+    window.addEventListener("provide-module-edit-window", addWin);
+    return () => {
+      window.removeEventListener("provide-module-edit-window", addWin);
+    };
+  });
+
+  useEffect(() => {
+    let closeWindow = async ({ detail: { win } }) => {
+      setWins((s) => {
+        let cloned = JSON.parse(JSON.stringify(s));
+        let idx = cloned.findIndex((w) => w._id === win._id);
+        cloned.splice(idx, 1);
+        return cloned;
+      });
+    };
+
+    window.addEventListener("close-window", closeWindow);
+    return () => {
+      window.removeEventListener("close-window", closeWindow);
+    };
+  });
+
+  return (
+    <div className={"relative w-full h-full"}>
+      {wins
+        .filter((e) => e.type === "ModuleWindow")
+        .filter((e) => !e.hidden)
+        .map((w) => {
+          return (
+            <WindowTemplate
+              key={w._id}
+              onSetTop={onSetTop}
+              initVal={w}
+              // toolBarClassName={"bg-green-400"}
+              showToolBtn={true}
+              onChange={reload}
+              blur={true}
+            >
+              <IOEdit boxID={w._id} win={w}></IOEdit>
+            </WindowTemplate>
+          );
+        })}
+      {children}
+
+      <TaskBarSet
+        wins={wins}
+        onClickTask={(w) => {
+          onSetTop(w);
+          reload(w);
+        }}
+      ></TaskBarSet>
+    </div>
+  );
+}
+
+export function TaskBarSet({ wins, onClickTask }) {
+  return (
+    <div
+      style={{ zIndex: 999999 }}
+      className={
+        "absolute bottom-0 left-0 w-full bg-opacity-25 bg-black h-12 p-2"
+      }
+    >
+      {wins
+        .slice()
+        .reverse()
+        .map((m) => {
+          return (
+            <TaskBtn
+              key={m._id + "_tskbar"}
+              onClick={() => {
+                onClickTask({ ...m });
+              }}
+            >
+              {m.name}
+            </TaskBtn>
+          );
+        })}
+    </div>
+  );
+}
+
+function TaskBtn({ children, onClick }) {
+  return (
+    <div
+      onClick={onClick}
+      className=" capitalize px-3 inline-flex items-center bg-opacity-25 bg-white h-full cursor-pointer select-none mr-2 rounded-xl"
+    >
+      {children}
+    </div>
+  );
 }

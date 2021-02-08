@@ -6,6 +6,7 @@ import { getLowDB } from "../server/boxdb";
 import { Layout } from "../ui/Layout.js";
 import { useBoxes } from "../server/codebox";
 import { SVGArea } from "../ui/SVGArea.js";
+import { WindowSet } from "../ui/WindowSet.js";
 // import { useProjectStore } from "../server/recent.js";
 export const ProjectContext = createContext({});
 
@@ -52,9 +53,11 @@ export function Editor() {
             boxesUtil,
           }}
         >
-          <div className={"h-full w-full relative"}>
+          <WindowSet>
             <SVGArea></SVGArea>
-          </div>
+          </WindowSet>
+          {/* <div className={"h-full w-full relative"}>
+          </div> */}
         </ProjectContext.Provider>
       </div>
     </Layout>

@@ -18,7 +18,7 @@ export const useBoxes = ({ db, root }) => {
   let saveInstant = (json) => {
     // let tag = moment().format('YYYY-MM-DD__[time]__hh-mm-ss-a') + '__randomID_' + getID()
     fs.writeFileSync(
-      path.join(root, "./src/js/meta.json"),
+      path.join(root, "./src/effectnode/js/meta.json"),
       JSON.stringify(json, null, "\t"),
       "utf-8"
     );
@@ -195,8 +195,8 @@ export const box = () => {
     // fileName
     let path = window.require("path");
     // let state = db.getState();
-    let JS_FOLDER = "./src/js";
-    let BOXES_FOLDER = "./src/js/boxes";
+    let JS_FOLDER = "./src/effectnode/js";
+    let BOXES_FOLDER = "./src/effectnode/js/boxes";
 
     if (box.isEntry) {
       return path.join(root, JS_FOLDER, box.fileName);

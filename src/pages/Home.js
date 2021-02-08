@@ -225,7 +225,9 @@ export function Home() {
     // shell.openExternal("https://effectnode.com");
 
     var gui = window.require("nw.gui");
-    gui.Shell.openExternal("https://effectnode.com");
+    gui.Shell.openExternal(
+      "https://github.com/wonglok/effectnode-studio-code-template"
+    );
   };
   return (
     <Layout title={"Creative Coding with Boxes and Cables"}>
