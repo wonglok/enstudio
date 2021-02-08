@@ -6,4 +6,7 @@ Demo:
 https://effectnode-studio-code-template.vercel.app/
 
 Project Code Template:
-https://effectnode-studio-code-template.vercel.app/
+https://github.com/wonglok/effectnode-studio-code-template
+
+Cable and Boxes GUI Source:
+https://github.com/wonglok/enstudio
