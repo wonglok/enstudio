@@ -1182,61 +1182,61 @@ export function SVGArea() {
   );
 }
 
-function LogBox() {
-  let scroller = useRef();
-  useEffect(() => {
-    let logger = ({ detail }) => {
-      if (scroller.current) {
-        let domList = scroller.current.querySelectorAll(".MY_LOG");
-        if (domList.length >= 100) {
-          for (let i = 0; i < domList.length; i++) {
-            if (i < domList.length - 100) {
-              domList[i].remove();
-            }
-          }
-        }
+// function LogBox() {
+//   let scroller = useRef();
+//   useEffect(() => {
+//     let logger = ({ detail }) => {
+//       if (scroller.current) {
+//         let domList = scroller.current.querySelectorAll(".MY_LOG");
+//         if (domList.length >= 100) {
+//           for (let i = 0; i < domList.length; i++) {
+//             if (i < domList.length - 100) {
+//               domList[i].remove();
+//             }
+//           }
+//         }
 
-        let getColor = (type = "log") => {
-          if (type === "log") {
-            return "text-yellow-200";
-          } else if (type === "info") {
-            return "text-blue-200";
-          } else if (type === "error") {
-            return "text-red-200";
-          } else {
-            return "text-yellow-200";
-          }
-        };
+//         let getColor = (type = "log") => {
+//           if (type === "log") {
+//             return "text-yellow-200";
+//           } else if (type === "info") {
+//             return "text-blue-200";
+//           } else if (type === "error") {
+//             return "text-red-200";
+//           } else {
+//             return "text-yellow-200";
+//           }
+//         };
 
-        let div = document.createElement("div");
-        div.innerHTML = `<div
-          class="MY_LOG p-1 text-sm whitespace-pre text-right ${getColor(
-            detail.type
-          )}"
-        >${detail.msg}</div>`;
-        scroller.current.appendChild(div);
+//         let div = document.createElement("div");
+//         div.innerHTML = `<div
+//           class="MY_LOG p-1 text-sm whitespace-pre text-right ${getColor(
+//             detail.type
+//           )}"
+//         >${detail.msg}</div>`;
+//         scroller.current.appendChild(div);
 
-        scroller.current.scrollTop = scroller.current.scrollHeight;
-      }
-    };
+//         scroller.current.scrollTop = scroller.current.scrollHeight;
+//       }
+//     };
 
-    let resetLogs = () => {
-      scroller.current.innerHTML = "";
-    };
+//     let resetLogs = () => {
+//       scroller.current.innerHTML = "";
+//     };
 
-    resetLogs();
+//     resetLogs();
 
-    window.addEventListener("log", logger);
-    return () => {
-      window.removeEventListener("log", logger);
-    };
-  }, [scroller]);
+//     window.addEventListener("log", logger);
+//     return () => {
+//       window.removeEventListener("log", logger);
+//     };
+//   }, [scroller]);
 
-  return (
-    <div
-      className={"w-full absolute right-0 overflow-scroll pr-3"}
-      ref={scroller}
-      style={{ height: `250px`, width: "400px", bottom: "50px" }}
-    ></div>
-  );
-}
+//   return (
+//     <div
+//       className={"w-full absolute right-0 overflow-scroll pr-3"}
+//       ref={scroller}
+//       style={{ height: `250px`, width: "400px", bottom: "50px" }}
+//     ></div>
+//   );
+// }
