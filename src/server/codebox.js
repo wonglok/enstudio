@@ -82,7 +82,7 @@ export const useBoxes = ({ db, root }) => {
 
     let moduleName = `${slug}${sepToken}${_id}`;
     let fileName = `${moduleName}.js`;
-    let filePath = path.join(root, `./src/js/boxes/${fileName}`);
+    let filePath = path.join(root, `./src/effectnode/js/boxes/${fileName}`);
     let newBox = {
       isFirstUserBox: boxes.length === 0,
       isProtected: false,
@@ -112,7 +112,7 @@ export const useBoxes = ({ db, root }) => {
     };
     db.get("boxes").push(newBox).write();
 
-    fs.ensureDirSync(path.join(root, `./src/js/boxes/`));
+    fs.ensureDirSync(path.join(root, `./src/effectnode/js/boxes/`));
     fs.ensureFileSync(filePath);
     fs.writeFileSync(
       filePath,
