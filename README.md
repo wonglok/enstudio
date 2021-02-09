@@ -1,9 +1,9 @@
 # Effect Node Studio
 
-# 1st Template
-
 ## Download Effect Node Studio Pre-release
 https://github.com/wonglok/enstudio/releases/tag/r001
+
+# 1st Template
 
 ## Download Effect Node Landing Page (Code Template Starter)
 https://github.com/wonglok/enstudio-landing
