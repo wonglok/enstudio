@@ -18,14 +18,6 @@ https://enstudio-landing-page.vercel.app/about
 
 ![enstudio](https://user-images.githubusercontent.com/4082826/107441562-67fbda80-6b70-11eb-8433-868a7a65f78d.png)
 
-# 2nd Template
-
-Project Code Template:
-https://github.com/wonglok/effectnode-studio-code-template
-
-Demo: 
-https://effectnode-studio-code-template.vercel.app/
-
 ----
 
 Progress update 🤩
