@@ -18,10 +18,6 @@ https://enstudio-landing-page.vercel.app/about
 
 ![enstudio](https://user-images.githubusercontent.com/4082826/107441562-67fbda80-6b70-11eb-8433-868a7a65f78d.png)
 
-----
+# Thank You List
 
-Progress update 🤩
-1. Rewrite editor in nwjs
-2. Remade code template in create react app production ready template
-3. Added color palette seeds chooser.
-4. Thank God for all the miracles he has done in my life in all areas 😍😍😍😍😍
+Thank you dear God, Jesus, HolySpirit for all the miracles you have done in my life, in all areas 😍😍😍😍😍
