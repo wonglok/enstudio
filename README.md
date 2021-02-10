@@ -44,6 +44,15 @@ https://enstudio-landing-page.vercel.app/about
 
 Comming soon....
 
+# Feature Highlight
+
+1. Flexible Cable and Boxes Core.
+2. Effect Node Studio Focuses on Editing the JSON File and JavaScript File Scallfolding and Cleanup. So that you can make different code templates.
+3. Effect Node Studio can Pass React Component Around or even Component Function. It even supports react dom router.
+4. Effect Node Studio Embraces Developer and Designer instead of trying to replace them. We let developer and designers input their best ideas into the project.
+5. Effect Node Studio is Code First Design allowing maximum flexibility, yet with different templates for easily getting started.
+
+
 # Thank You List
 
 Thank you dear God, Jesus, HolySpirit for all the miracles you have done in my life, in all areas 😍😍😍😍😍
