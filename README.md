@@ -7,6 +7,15 @@
 
 2. Download Code Template
    https://github.com/wonglok/enstudio-landing
+ 
+3. Unzip and open the Effect Node Studio App
+
+4. Select the Code Template Folder in App
+
+5. NPM / Yarn install the code template
+
+6. Open http://localhost:3001
+
 
 # Realtime Tweaking / Editing Code Video Demo
 
