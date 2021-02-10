@@ -12,7 +12,7 @@
 
 4. Select the Code Template Folder in App
 
-5. NPM / Yarn install the code template
+5. NPM / Yarn install the dependencies code template
 
 6. Open http://localhost:3001
 
