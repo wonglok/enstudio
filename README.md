@@ -14,7 +14,9 @@
 
 5. NPM / Yarn install the dependencies code template
 
-6. Open http://localhost:3001
+6. `npm run dev` or `yarn dev`
+
+7. Open http://localhost:3001
 
 
 # Realtime Tweaking / Editing Code Video Demo
