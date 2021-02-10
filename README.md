@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-1. Download Release Zip File (NWJS App).
+1. Download Release Zip File (Effect Node Studio macOS App: Pre-release).
    https://github.com/wonglok/enstudio/releases/tag/r001
 
 2. Download Code Template
@@ -23,6 +23,10 @@ About Page:
 https://enstudio-landing-page.vercel.app/about
 
 ![enstudio](https://user-images.githubusercontent.com/4082826/107441562-67fbda80-6b70-11eb-8433-868a7a65f78d.png)
+
+## Docs and tutorials.
+
+Comming soon....
 
 # Thank You List
 
