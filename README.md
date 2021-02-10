@@ -1,5 +1,8 @@
 # Effect Node Studio
 
+## Introduction
+Effect Node is a production-grade cable and boxes creative coding tool for making generative art, AR, or web page in reactjs.
+
 ## Getting Started
 
 1. Download Release Zip File (Effect Node Studio macOS App: Pre-release).
@@ -7,6 +10,17 @@
 
 2. Download Code Template
    https://github.com/wonglok/enstudio-landing
+ 
+3. Unzip and open the Effect Node Studio App
+
+4. Select the Code Template Folder in App
+
+5. NPM / Yarn install the dependencies code template
+
+6. `npm run dev` or `yarn dev`
+
+7. Open http://localhost:3001
+
 
 # Realtime Tweaking / Editing Code Video Demo
 
@@ -29,6 +43,15 @@ https://enstudio-landing-page.vercel.app/about
 ## Docs and tutorials.
 
 Comming soon....
+
+# Feature Highlight
+
+1. Flexible Cable and Boxes Core.
+2. Effect Node Studio Focuses on Editing the JSON File and JavaScript File Scallfolding and Cleanup. So that you can make different code templates.
+3. Effect Node Studio can Pass React Component Around or even Component Function. It even supports react dom router.
+4. Effect Node Studio Embraces Developer and Designer instead of trying to replace them. We let developer and designers input their best ideas into the project.
+5. Effect Node Studio is Code First Design allowing maximum flexibility, yet with different templates for easily getting started.
+
 
 # Thank You List
 
