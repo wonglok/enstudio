@@ -13,9 +13,9 @@ export const getLowDB = ({ projectRoot }) => {
   if (DBCache.has(projectRoot)) {
     return DBCache.get(projectRoot);
   } else {
-    const fs = window.require("fs");
-    const low = window.require("lowdb");
-    const Memory = window.require("lowdb/adapters/Memory");
+    const fs = require("fs");
+    const low = require("lowdb");
+    const Memory = require("lowdb/adapters/Memory");
     const adapter = new Memory();
     adapter.write = () => {
       // setTimeout(() => {

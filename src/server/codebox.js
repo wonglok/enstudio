@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import slugify from "slugify";
-const _ = window.require("lodash");
+import _ from "lodash";
 const smalltalk = require("../ui/smalltalk/smalltalk");
-let path = window.require("path");
+let path = require("path");
 export const getID = () => `_${(Math.random() * 100000000).toFixed(0)}`;
-let fs = window.require("fs-extra");
+let fs = require("fs-extra");
 
 function makeSlug(str) {
   return slugify(str, {
@@ -193,7 +193,7 @@ export const box = () => {
 
   const resolvePath = ({ box }) => {
     // fileName
-    let path = window.require("path");
+    let path = require("path");
     // let state = db.getState();
     let JS_FOLDER = "./src/effectnode/js";
     let BOXES_FOLDER = "./src/effectnode/js/boxes";

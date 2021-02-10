@@ -32,13 +32,13 @@ function ThankYouCard({ children, text, extraClass, onClick }) {
 }
 
 let openInFinder = ({ url }) => {
-  var gui = window.require("nw.gui");
+  var gui = require("nw.gui");
   gui.Shell.openItem(url);
 };
 
 let checkFolderPath = ({ url }) => {
-  const fs = window.require("fs-extra");
-  const path = window.require("path");
+  const fs = require("fs-extra");
+  const path = require("path");
 
   // const packageObj = fs.readJsonSync(path.join(url, "/package.json"));
 
@@ -58,7 +58,7 @@ let checkFolderPath = ({ url }) => {
 
 export const RecentItem = ({ doc, alt }) => {
   // let { projectID } = useParams();
-  // let fs = window.require("fs-extra");
+  // let fs = require("fs-extra");
   let removeDoc = useProjectStore((s) => s.removeDoc);
   let openDoc = async ({ doc }) => {
     let url = doc.path;
@@ -221,10 +221,10 @@ export function Home() {
     anchor.click();
   };
   let openDownloader = () => {
-    // const { shell } = window.require("electron");
+    // const { shell } = require("electron");
     // shell.openExternal("https://effectnode.com");
 
-    var gui = window.require("nw.gui");
+    var gui = require("nw.gui");
     gui.Shell.openExternal(
       "https://github.com/wonglok/effectnode-studio-code-template"
     );

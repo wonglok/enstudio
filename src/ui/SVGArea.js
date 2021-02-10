@@ -92,7 +92,7 @@ export function Box({
   });
 
   let openFileEditor = ({ box }) => {
-    var openInEditor = window.require("open-in-editor");
+    var openInEditor = require("open-in-editor");
     var editor = openInEditor.configure(
       {
         // options
@@ -896,8 +896,8 @@ export function SVGEditor({ rect, state }) {
   };
 
   // let openCore = () => {
-  //   // var path = window.require("path");
-  //   var openInEditor = window.require("open-in-editor");
+  //   // var path = require("path");
+  //   var openInEditor = require("open-in-editor");
   //   var editor = openInEditor.configure(
   //     {
   //       // options
@@ -939,13 +939,13 @@ export function SVGEditor({ rect, state }) {
   });
 
   let openFolder = () => {
-    // let { ipcRenderer } = window.require("electron");
+    // let { ipcRenderer } = require("electron");
     // ipcRenderer.send("open", root);
     openInFinder({ url: projectRoot });
   };
 
   let openInFinder = ({ url }) => {
-    var gui = window.require("nw.gui");
+    var gui = require("nw.gui");
     gui.Shell.openItem(url);
   };
 
@@ -954,8 +954,8 @@ export function SVGEditor({ rect, state }) {
   };
 
   let getURL = () => {
-    let path = window.require("path");
-    let fs = window.require("fs-extra");
+    let path = require("path");
+    let fs = require("fs-extra");
     let config = fs.readJsonSync(
       path.join(projectRoot, "./src/effectnode/config.json")
     );
@@ -965,7 +965,7 @@ export function SVGEditor({ rect, state }) {
 
   let openWebPage = () => {
     let url = getURL();
-    let gui = window.require("nw.gui");
+    let gui = require("nw.gui");
     gui.Shell.openExternal(url);
   };
 

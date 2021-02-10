@@ -4,10 +4,10 @@ export async function runSocket({
   boxdb,
   onReady = () => {},
 }) {
-  // const getPort = window.require("get-port");
-  // const path = window.require("path");
+  // const getPort = require("get-port");
+  // const path = require("path");
 
-  // const fs = window.require("fs-extra");
+  // const fs = require("fs-extra");
   // const ensureMetaFolderPath = path.join(projectRoot, "./prod/dist/js/");
   // const metaFileSRC = path.join(projectRoot, "./src/js/meta.json");
   // const metaFileProd = path.join(projectRoot, "./prod/dist/js/meta.json");
@@ -23,16 +23,16 @@ export async function runSocket({
 
   let httpServer = false;
   try {
-    let fs = window.require("fs-extra");
-    let path = window.require("path");
+    let fs = require("fs-extra");
+    let path = require("path");
     let config = fs.readJsonSync(
       path.join(rootFolder, "./src/effectnode/config.json")
     );
     let port = config.studio.port;
-    var express = window.require("express");
-    var cors = window.require("cors");
+    var express = require("express");
+    var cors = require("cors");
     var app = express();
-    httpServer = window.require("http").Server(app);
+    httpServer = require("http").Server(app);
 
     app.use(cors());
 
@@ -40,7 +40,7 @@ export async function runSocket({
       res.json({ msg: "ok" });
     });
 
-    var io = window.require("socket.io")(httpServer, {
+    var io = require("socket.io")(httpServer, {
       cors: {
         origin: "*",
         methods: ["GET", "POST"],
