@@ -3,6 +3,10 @@
 ## Introduction
 Effect Node is a production-grade cable and boxes creative coding tool for making generative art, AR, or web page in reactjs.
 
+Effect Node Studio makes complex graphics maintainable and managable.
+
+![CodeTemplate](https://github.com/wonglok/effectnode-studio-code-template/blob/master/docs/img/management.png?raw=true)
+
 ## Getting Started
 
 1. Download Release Zip File (Effect Node Studio macOS App: Pre-release).
