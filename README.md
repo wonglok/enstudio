@@ -1,7 +1,11 @@
 # Effect Node Studio
 
 ## Introduction
-Effect Node is a production-grade cable and boxes creative coding tool for making generative art, AR, or web page in reactjs.
+Effect Node is a production-grade cable and boxes creative coding tool for making generative art, AR, or web page in reactjs, based on create-react-app.
+
+Effect Node Studio makes complex graphics maintainable and managable.
+
+![CodeTemplate](https://github.com/wonglok/effectnode-studio-code-template/blob/master/docs/img/management.png?raw=true)
 
 ## Getting Started
 
@@ -13,9 +17,9 @@ Effect Node is a production-grade cable and boxes creative coding tool for makin
  
 3. Unzip and open the Effect Node Studio App
 
-4. Select the Code Template Folder in App
+4. In App, click open folder, choose the Code Tempalte Folder that you donwloaded & unzipped.
 
-5. NPM / Yarn install the dependencies code template
+5. `npm install` or `yarn` to install the dependencies code template
 
 6. `npm run dev` or `yarn dev`
 
