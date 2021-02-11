@@ -10,7 +10,7 @@ Effect Node Studio makes complex graphics maintainable and managable.
 ## Getting Started
 
 1. Download Release Zip File (Effect Node Studio macOS App: Pre-release).
-   https://github.com/wonglok/enstudio/releases/tag/r001
+   https://github.com/wonglok/enstudio/releases
 
 2. Download Code Template
    https://github.com/wonglok/enstudio-landing
