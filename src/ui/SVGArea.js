@@ -854,7 +854,16 @@ export function SVGEditor({ rect, state }) {
   };
 
   const addModule = async () => {
-    await boxesUtil.addBox().catch(console.log);
+    let { box } = await boxesUtil.addBox().catch((v) => {
+      console.log(v);
+      return { box: false };
+    });
+    if (!box) {
+      return;
+    }
+    box.x = (rect.width / 2) * 0.0 + pan.x + 50;
+    box.y = (rect.height / 2) * 0.0 + pan.y + 150;
+
     refresh((s) => s + rID + 1);
     // addBox();
     // console.log(lowdb.get("boxes").value());
@@ -873,6 +882,7 @@ export function SVGEditor({ rect, state }) {
 
       let inputBox = box;
       let inputBoxID = box._id;
+
       let input = inputBox.inputs[0];
       let inputSlotID = input._id;
 
@@ -882,11 +892,40 @@ export function SVGEditor({ rect, state }) {
       if (!outputBoxID || !inputBox || !inputSlotID) {
         return;
       }
-      // let outputBoxID = hand.
+
       await boxesUtil.addCable({ outputBoxID, inputBoxID, inputSlotID });
 
-      box.x = position.x - 50;
-      box.y = position.y - 50;
+      box.x = position.x - 50 + pan.x;
+      box.y = position.y - 50 + pan.y;
+      await boxesUtil.updateBox({ box });
+
+      refresh((s) => s + rID + 1);
+    } else if (hand.type === "input") {
+      let { box } = await boxesUtil.addBox().catch(() => {
+        setHandMode(false);
+        return { box: false };
+      });
+
+      if (!box) {
+        return;
+      }
+
+      let outputBox = box;
+      let outputBoxID = outputBox._id;
+
+      let inputBox = hand.box;
+      let inputBoxID = inputBox._id;
+
+      let inputSlotID = hand.handSlotID;
+
+      if (!outputBoxID || !inputBox || !inputSlotID) {
+        return;
+      }
+
+      await boxesUtil.addCable({ outputBoxID, inputBoxID, inputSlotID });
+
+      box.x = position.x - 50 + pan.x;
+      box.y = position.y - 50 + pan.y;
       await boxesUtil.updateBox({ box });
 
       refresh((s) => s + rID + 1);
@@ -949,9 +988,11 @@ export function SVGEditor({ rect, state }) {
     gui.Shell.openItem(url);
   };
 
-  let reloadSystem = () => {
-    window.location.reload();
-  };
+  // let reloadSystem = () => {
+  //   let nw = require("nw.gui");
+  //   let win = nw.Window.get();
+  //   win.close();
+  // };
 
   let getURL = () => {
     let path = require("path");
@@ -1065,7 +1106,7 @@ export function SVGEditor({ rect, state }) {
           Reset View
         </text>
 
-        <text
+        {/* <text
           x={"Reset View".length * 7 + 30 + pan.x}
           y={10 + 17 + pan.y}
           onClick={reloadSystem}
@@ -1074,10 +1115,10 @@ export function SVGEditor({ rect, state }) {
           className="underline cursor-pointer"
         >
           Reload System
-        </text>
+        </text> */}
 
         <text
-          x={"Reset View".length * 7 + 130 + pan.x}
+          x={"Reset View".length * 7 + 30 + pan.x}
           y={10 + 17 + pan.y}
           onClick={addModule}
           fontSize="17"
@@ -1088,7 +1129,7 @@ export function SVGEditor({ rect, state }) {
         </text>
 
         <text
-          x={280 + 20 + pan.x}
+          x={180 + 20 + pan.x}
           y={10 + 17 + pan.y}
           onClick={openFolder}
           fontSize="17"
@@ -1111,7 +1152,7 @@ export function SVGEditor({ rect, state }) {
 
         {online && (
           <text
-            x={400 + pan.x}
+            x={300 + pan.x}
             y={10 + 17 + pan.y}
             onClick={openWebPage}
             fontSize="17"

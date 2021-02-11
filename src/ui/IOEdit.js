@@ -88,6 +88,9 @@ function NumberInput({ data, send }) {
 }
 
 function InputPicker({ data, send, refresh }) {
+  let reload = () => {
+    window.dispatchEvent(new CustomEvent("reload-page"));
+  };
   return (
     <div>
       <div className={"m-2"}>Choose a Input Type</div>
@@ -96,6 +99,7 @@ function InputPicker({ data, send, refresh }) {
           data.type = "color";
           send();
           refresh();
+          reload();
         }}
         className={"block m-2 underline"}
       >
@@ -106,6 +110,7 @@ function InputPicker({ data, send, refresh }) {
           data.type = "number";
           send();
           refresh();
+          reload();
         }}
         className={"block m-2 underline"}
       >
@@ -161,6 +166,7 @@ function UserData({ box, win }) {
       type: "ready",
     });
     boxesUtil.updateBox({ box });
+    window.dispatchEvent(new CustomEvent("reload-page"));
     refresh((s) => s + 1);
   };
 
@@ -168,6 +174,7 @@ function UserData({ box, win }) {
     box.userData.splice(idx, 1);
     boxesUtil.updateBox({ box });
     refresh((s) => s + 1);
+    window.dispatchEvent(new CustomEvent("reload-page"));
   };
 
   let Pickers = () => {
