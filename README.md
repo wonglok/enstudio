@@ -17,9 +17,9 @@ Effect Node Studio makes complex graphics maintainable and managable.
  
 3. Unzip and open the Effect Node Studio App
 
-4. Select the Code Template Folder in App
+4. In App, click open folder, choose the Code Tempalte Folder that you donwloaded & unzipped.
 
-5. NPM / Yarn install the dependencies code template
+5. `npm install` or `yarn` to install the dependencies code template
 
 6. `npm run dev` or `yarn dev`
 
