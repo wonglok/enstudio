@@ -59,4 +59,11 @@ Comming soon....
 
 # Thank You List
 
-Thank you dear God, Jesus, HolySpirit for all the miracles you have done in my life, in all areas 😍😍😍😍😍
+Thank you dear God, Jesus, HolySpirit for all the miracles you have done in my life, in all areas 😍😍😍😍
+
+# Other Code Starter Templates
+
+Muse HQ Code Template 
+https://github.com/wonglok/enstudio-template-musehq
+
+![musehq Support](https://github.com/wonglok/enstudio-template-musehq/blob/master/docs/img/musehq.png?raw=true)
