@@ -98,15 +98,15 @@ export const useBoxes = ({ db, root }) => {
       inputs: [
         {
           _id: getID(),
-          name: "main",
+          name: "0",
         },
         {
           _id: getID(),
-          name: "speed",
+          name: "1",
         },
         {
           _id: getID(),
-          name: "color",
+          name: "2",
         },
       ],
     };

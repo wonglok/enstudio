@@ -406,7 +406,7 @@ function AutoFlipLine({
         acc = acc + factor * 2.5;
         ref.current.setAttribute("stroke-dashoffset", acc);
       }
-    }, 16.7);
+    }, 16.67);
     return () => {
       clearInterval(tt);
     };
@@ -603,6 +603,7 @@ let LogicCable = ({
           reverse={false}
         ></AutoFlipLine>
       )}
+
       {show.includes("close") && (
         <g>
           <circle
