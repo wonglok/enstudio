@@ -397,7 +397,8 @@ function AutoFlipLine({
 
   useEffect(() => {
     let acc = 0;
-    let tt = setInterval(() => {
+    let anim = () => {
+      tt = requestIdleCallback(anim);
       let factor = 1;
       if (reverse) {
         factor = -1;
@@ -406,9 +407,12 @@ function AutoFlipLine({
         acc = acc + factor * 2.5;
         ref.current.setAttribute("stroke-dashoffset", acc);
       }
-    }, 16.67);
+    };
+    let tt = 0;
+    tt = requestIdleCallback(anim);
+
     return () => {
-      clearInterval(tt);
+      cancelIdleCallback(tt);
     };
   }, [x1, x2, y1, y2]);
 
@@ -424,8 +428,8 @@ C${x1},${y1 + dist * factorY} ${x2},${y2 + dist * -factorY}
 ${x2},${y2}`}
       fill="none"
       stroke="#babaff"
-      strokeDasharray="24"
-      strokeWidth="2px"
+      strokeDasharray="20"
+      strokeWidth="1px"
       // strokeDashoffset={offsetAnim}
     />
   ) : (
@@ -440,8 +444,8 @@ C${x1 + dist * factorX},${y1} ${x2 + dist * -factorX},${y2}
 ${x2},${y2}`}
       fill="none"
       stroke="#babaff"
-      strokeWidth="2px"
-      strokeDasharray="24"
+      strokeWidth="1px"
+      strokeDasharray="20"
       // strokeDashoffset={offsetAnim}
     />
   );
