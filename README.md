@@ -14,7 +14,7 @@ Effect Node Studio makes complex graphics maintainable and managable.
    https://github.com/wonglok/enstudio/releases
 
 2. Download Code Template
-   https://github.com/wonglok/enstudio-landing
+   https://github.com/wonglok/enstudio-template-r3f
  
 3. Unzip and open the Effect Node Studio App
 
