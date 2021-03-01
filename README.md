@@ -14,7 +14,7 @@ Effect Node Studio makes complex graphics maintainable and managable.
    https://github.com/wonglok/enstudio/releases
 
 2. Download Code Template
-   https://github.com/wonglok/enstudio-landing
+   https://github.com/wonglok/enstudio-template-r3f
  
 3. Unzip and open the Effect Node Studio App
 
@@ -77,3 +77,12 @@ https://github.com/wonglok/enstudio-template-r3f
 
 ![Tune Ball](https://github.com/wonglok/enstudio-template-r3f/raw/master/docs/img/tune-ball.png?raw=true)
 
+## React WebSite + React Three Fiber
+
+
+![EffectNode Studio Demo](https://github.com/wonglok/enstudio-template-website/blob/master/docs/img/noodles.png?raw=true)
+
+
+https://enstudio-template-website.vercel.app/
+
+https://enstudio-template-website.vercel.app/home
