@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDrag } from "react-use-gesture";
 // import { ProjectContext } from "../pages/Editor";
 import { IOEdit } from "./IOEdit.js";
+
 const getZMax = ({ wins }) => {
   let zidx = wins.map((e, i) => e.zIndex || i);
   if (zidx.length === 0) {
