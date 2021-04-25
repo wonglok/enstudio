@@ -1,6 +1,7 @@
 # Effect Node Studio
 
-(Work in progress)
+![webbys](https://github.com/wonglok/enstudio/raw/master/docs/img/webbys2021.png)
+
 
 ## Introduction
 
@@ -91,4 +92,3 @@ https://enstudio-template-website.vercel.app/home
 ## Award and Recognition
 
 ![webbys](https://github.com/wonglok/enstudio/raw/master/docs/img/screnshot.jpeg)
-![webbys](https://github.com/wonglok/enstudio/raw/master/docs/img/webbys2021.png)
